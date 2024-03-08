@@ -32,7 +32,12 @@ class FileStorage:
         '''checks if file exists and loads back the inside
         '''
         try:
-            with open(self.__file_path, mode="w", encoding="utf-8") as file:
-                self.__objects = json.loads(file)
-        except:
-            FileNotFoundError
+            with open(self.__file_path, mode="r", encoding="utf-8") as file:
+                data = json.loads(file)
+                for key, value in data.items():
+                    obj_key = key.split(".")[1]
+                    object = BaseModel(**value)
+                    self.__objects[key] = obj
+
+        except FileNotFoundError:
+            pass
