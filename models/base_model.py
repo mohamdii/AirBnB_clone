@@ -15,6 +15,8 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
+        """*args, **kwargs"""
+
         if kwargs:
             for key, value in kwargs.items():
                 if key == "__class__":
@@ -28,13 +30,20 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
+        """returns message"""
+
         prt2 = "({}) {}".format(self.id, self.__dict__)
         return "[{}] ".format(self.__class__.__name__) + prt2
 
     def save(self):
+        """save module
+        """
+
         self.updated_at = datetime.now()
 
     def to_dict(self):
+        """to dict module"""
+
         dic = self.__dict__.copy()
         dic['__class__'] = self.__class__.__name__
         dic['created_at'] = self.created_at.isoformat()
