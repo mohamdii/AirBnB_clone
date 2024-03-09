@@ -1,10 +1,19 @@
 #!/usr/bin/python3
+"""
+uuid module is to make unique ids
+date time n.module.
+"""
 import uuid
 from datetime import datetime
 
 
 f = "%Y-%m-%dT%H:%M:%S.%f"
+
+
 class BaseModel:
+    """the base class
+    """
+
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
@@ -19,14 +28,15 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        return "[{}] ".format(self.__class__.__name__) + "({}) {}".format(self.id, self.__dict__)
+        prt2 = "({}) {}".format(self.id, self.__dict__)
+        return "[{}] ".format(self.__class__.__name__) + prt2
 
     def save(self):
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        dic = self.__dict__
-        dic["__class__"] = self.__class__.__name__
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at.isoformat()
+        dic = self.__dict__.copy()
+        dic['__class__'] = self.__class__.__name__
+        dic['created_at'] = self.created_at.isoformat()
+        dic['updated_at'] = self.updated_at.isoformat()
         return dic
