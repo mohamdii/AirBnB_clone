@@ -4,7 +4,6 @@ header {
         width: 100%;
         border-bottom: 1px solid #CCCCCC;
 }
-.img {
-    justify-content: center;
-    padding-left: 20px;
+.imag {
+    margin-left: 20px;
 }
