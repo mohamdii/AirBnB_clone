@@ -4,6 +4,7 @@
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 1px;
+    justify-content: end;
 }
 button {
     margin-top: 11px;
@@ -14,5 +15,5 @@ button {
     width: 20%;
     border: none;
     border-radius: 4px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
