@@ -17,6 +17,21 @@ button {
     margin-right: 30px;
     opacity: 1;
 }
+
 button:hover {
-    opacity: 90;
+    opacity: 9;
+    filter: alpha(opacity=90); /*not widely supported */ 
 }
+
+.locations {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #b45555;
+    display: flex;
+}
+
+
+
+
+
+
