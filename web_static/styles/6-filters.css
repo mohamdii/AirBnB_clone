@@ -11,8 +11,6 @@
     margin-right:auto;
     position: relative;
 }
-.filters div {
-}
 
 button {
     font-size: 18px;
@@ -38,20 +36,20 @@ button:hover {
     border: none;
     border-right: 1px solid #DDDDDD;
     width: 25%;
+    position: relative;
 }
-.locations div {
+.locations div h3 h4 {
     height: 100%;
     width: 25%;
     border-right: 1px #DDDDDD;
 }
 h3 {
-    margin-left: 40px;
     font-weight: 600;
 }
 h4 {
     margin-bottom: 20px;
-    margin-left: 40px;
     font-weight: 400;
+    padding: 0;
 }
 .amenities {
     margin-top: 0;
@@ -59,9 +57,27 @@ h4 {
     border: none;
     border-right: 1px solid #DDDDDD;
     width: 25%;
+    position: relative;
 }
 .amenities div {
     height: 100%;
     width: 25%;
-    border-right: 1px #DDDDDD;
+}
+.popover {
+    display: none;
+    list-style-type: none;
+    width: 100%;
+    border:1px solid #DDDDDD;
+    border-radius: 4px;
+    margin: top -10px;
+    padding:0;
+    margin:0;
+}
+.locations:hover .popover, .amenities:hover .popover {
+    display: block;
+}
+.sub {
+    list-style-type: none;
+    padding:0;
+    margin:0;
 }
