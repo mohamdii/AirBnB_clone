@@ -20,6 +20,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    text-align: center;
   }
   .places h2 {
     font-size: 30px;
