@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """Base class"""
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
-    id = uuid.uuid4()
-    created_at = datetime.datetime.now()
-    updated_at = datetime.datetime.now()
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
 
 
     def __str__(self):
@@ -16,7 +17,7 @@ class BaseModel:
             self.id, BaseModel.__dict__)
         
     def save(self):
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.today()
         
     def to_dict(self):
         dictionary = self.__dict__
@@ -24,10 +25,3 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
-
-if __name__ == '__main__':
-    a = BaseModel()
-    print(a.updated_at, a.id)
-    print(a.to_dict())
-    print(a)
-    """print(str(a))"""
