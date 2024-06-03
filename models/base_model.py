@@ -5,10 +5,20 @@ from datetime import datetime
 
 
 class BaseModel:
-    def __init__(self):
+    tform = "%Y-%m-%dT%H:%M:%S.%f"
+    def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    self.__dict__[key] = datetime.strptime(value, self.tform)
+                else:
+                    self.__dict__[key] = value
+                    
+        else:
+            self.created_at = datetime.today()
+            self.updated_at = datetime.today()                    
 
     def __str__(self):
         return "[{}] ({}) {}".format(
