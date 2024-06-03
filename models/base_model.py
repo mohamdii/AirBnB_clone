@@ -1,52 +1,34 @@
 #!/usr/bin/python3
-"""
-uuid module is to make unique ids
-date time n.module.
-"""
+"""Base class"""
 import uuid
-from datetime import datetime
-from models.engine.file_storage import FileStorage
-f = "%Y-%m-%dT%H:%M:%S.%f"
+import datetime
 
 
 class BaseModel:
-    """the base class
-    """
+    def __init__(self):
+        self.id = uuid.uuid4()
+        self.created_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
 
-    def __init__(self, *args, **kwargs):
-        """*args, **kwargs"""
-
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == "__class__":
-                    continue
-                if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, f)
-                setattr(self, key, value)
-        else:
-            FileStorage.new(self)
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
 
     def __str__(self):
-        """returns message"""
-
-        prt2 = "({}) {}".format(self.id, self.__dict__)
-        return "[{}] ".format(self.__class__.__name__) + prt2
-
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, 
+            self.id, BaseModel.__dict__)
+        
     def save(self):
-        """save module
-        """
-
-        self.updated_at = datetime.now()
-        FileStorage.save()
-
+        self.updated_at = datetime.datetime.now()
+        
     def to_dict(self):
-        """to dict module"""
+        dictionary = self.__dict__
+        dictionary['__class__'] = self.__class__.__name__
+        self.created_at = self.created_at.isoformat()
+        self.updated_at = self.updated_at.isoformat()
+        return dictionary
 
-        dic = self.__dict__.copy()
-        dic['__class__'] = self.__class__.__name__
-        dic['created_at'] = self.created_at.isoformat()
-        dic['updated_at'] = self.updated_at.isoformat()
-        return dic
+if __name__ == '__main__':
+    a = BaseModel()
+    print(a.updated_at, a.id)
+    print(a.to_dict())
+    print(a)
+    """print(str(a))"""
