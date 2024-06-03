@@ -5,10 +5,9 @@ import datetime
 
 
 class BaseModel:
-    def __init__(self):
-        self.id = uuid.uuid4()
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+    id = uuid.uuid4()
+    created_at = datetime.datetime.now()
+    updated_at = datetime.datetime.now()
 
 
     def __str__(self):
