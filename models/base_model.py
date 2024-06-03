@@ -10,16 +10,13 @@ class BaseModel:
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
 
-
     def __str__(self):
         return "[{}] ({}) {}".format(
-            self.__class__.__name__, 
-            self.id, BaseModel.__dict__)
-
+            self.__class__.__name__,
+            self.id, self.__dict__)
 
     def save(self):
         self.updated_at = datetime.today()
-
 
     def to_dict(self):
         dictionary = self.__dict__
