@@ -15,10 +15,12 @@ class BaseModel:
         return "[{}] ({}) {}".format(
             self.__class__.__name__, 
             self.id, BaseModel.__dict__)
-        
+
+
     def save(self):
         self.updated_at = datetime.today()
-        
+
+
     def to_dict(self):
         dictionary = self.__dict__
         dictionary['__class__'] = self.__class__.__name__
