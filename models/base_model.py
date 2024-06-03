@@ -21,8 +21,8 @@ class BaseModel:
     def to_dict(self):
         dictionary = self.__dict__
         dictionary['__class__'] = self.__class__.__name__
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at.isoformat()
+        dictionary['created_at'] = self.created_at.isoformat()
+        dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
 
 if __name__ == '__main__':
